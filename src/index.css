@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 @theme {
   --color-azul-texto-e-bg: #2563eb;
   --color-cinza-header-bg: #f8fafc;
   --color-laranja-carrinho-icone-bg: #f97316;
-  --color-cinza-borda: #a9abad;
+  --color-cinza-borda: #c4c7c9;
   --font-inter: "Roboto", sans-serif;
+  --color-cinza-text-body: #444749;
+  --color-cinza-text-carrinho: #A9ABAD;
 }
