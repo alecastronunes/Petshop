@@ -7,6 +7,10 @@
   --color-cinza-borda: #c4c7c9;
   --font-inter: "Roboto", sans-serif;
   --color-cinza-text-body: #444749;
-  --color-cinza-text-carrinho: #A9ABAD;
-  --color-fundo: #A9ABAD;
+  --color-cinza-text-carrinho: #a9abad;
+  --color-fundo: #a9abad;
+}
+
+body {
+  background-color: #f8fafc;
 }
