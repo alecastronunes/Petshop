@@ -1,10 +1,11 @@
 import { BsCartPlus } from "react-icons/bs";
 import { api } from "../../services/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import toast from "react-hot-toast";
+import { CartContext } from "../../context/CartContext";
 
-interface ProductProps {
-  id: string;
+export interface ProductProps {
+  id: number;
   title: string;
   description: string;
   price: number;
@@ -13,6 +14,7 @@ interface ProductProps {
 
 export function Home() {
   const [products, setProducts] = useState<ProductProps[]>([]);
+  const { addItemCart } = useContext(CartContext);
 
   useEffect(() => {
     async function getProducts() {
@@ -23,6 +25,18 @@ export function Home() {
     getProducts();
   }, []);
 
+  function handleAddItemCart(product: ProductProps) {
+    toast.success("Produto adicionado ao carrinho!", {
+      style: {
+        borderRadius: 10,
+        backgroundColor: "#2baf2b",
+        color: "#FFF",
+      },
+    });
+    console.log(product)
+    addItemCart(product);
+  }
+
   return (
     <div>
       <main className="w-full max-w-7xl px-5 mx-auto font-inter">
@@ -30,7 +44,7 @@ export function Home() {
         {products.length > 0 && (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
             {products.map((product) => (
-              <section className="w-full rounded-md shadow-b-cinza-borda shadow-md">
+              <section key={product.id} className="w-full rounded-md shadow-b-cinza-borda shadow-md">
                 <img
                   className="w-full rounded-t-md max-h-70 min-h-34 mb-2"
                   src={product.cover}
@@ -46,7 +60,10 @@ export function Home() {
                       currency: "BRL",
                     })}
                   </strong>
-                  <button className="hover:scale-101 transition duration-300 ease-in-out bg-laranja-carrinho-icone-bg p-1 rounded flex justify-center items-center cursor-pointer">
+                  <button
+                    onClick={() => handleAddItemCart(product)}
+                    className="hover:scale-101 transition duration-300 ease-in-out bg-laranja-carrinho-icone-bg p-1 rounded flex justify-center items-center cursor-pointer"
+                  >
                     <BsCartPlus />
                     <p className="mx-1">Adicionar ao Carrinho</p>
                   </button>
