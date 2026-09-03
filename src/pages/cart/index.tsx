@@ -1,11 +1,10 @@
 import { FiTrash2 } from "react-icons/fi";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router";
 
-
 export function Cart() {
-  const { cart, addItemCart, } = useContext(CartContext);
+  const { cart, addItemCart, removeItemCart } = useContext(CartContext);
 
   return (
     <div className="w-full max-w-7xl px-5 mx-auto font-inter">
@@ -38,16 +37,13 @@ export function Cart() {
                 <div className="ml-auto mr-3 flex items-center gap-3">
                   <button
                     className="text-xl outline-1 h-7 w-7 outline-cinza-borda hover:bg-cinza-borda delay-75 cursor-pointer"
-                    type="button"
-                    aria-label="Diminuir quantidade"
+                    onClick={() => removeItemCart(product)}
                   >
                     -
                   </button>
-                  <span>{product.amount}</span>
+                  {product.amount}
                   <button
                     className="outline-1 h-7 w-7 outline-cinza-borda hover:bg-cinza-borda delay-75 cursor-pointer"
-                    type="button"
-                    aria-label="Aumentar quantidade"
                     onClick={() => addItemCart(product)}
                   >
                     +
@@ -58,26 +54,24 @@ export function Cart() {
                       <p className="ml-1 cursor-pointer">Remover</p>
                     </span>
                   </div>
-
                 </div>
               </section>
             ))}
           </div>
 
-            
           <section className="h-60 w-full rounded-md outline-1 outline-offset-2 outline-cinza-borda">
             <div className="p-5">
               <h1 className="text-2xl font-semibold">Resumo do Pedido</h1>
               <div className="my-3 flex justify-between">
                 <span className="text-cinza-text-body text-base font-medium">
-                  Subtotal ({})
+                  Subtotal ()
                 </span>
-                <span className="text-cinza-text-body text-base font-medium">
+                {/* <span className="text-cinza-text-body text-base font-medium">
                   {.toLocaleString("pt-BR", {
                     style: "currency",
                     currency: "BRL",
                   })}
-                </span>
+                </span> */}
               </div>
               <hr className="text-cinza-borda" />
               <div className="my-6 flex justify-between">
