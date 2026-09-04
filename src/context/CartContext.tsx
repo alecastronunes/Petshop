@@ -66,12 +66,21 @@ function CartProvider({ children }: CartProviderProps) {
     const indexItem = cart.findIndex((item) => item.id === product.id);
 
     if (cart[indexItem]?.amount > 1) {
-      const cartList = cart;
+      const currentCart = cart.map((item) => {
+        if (item.id !== product.id) {
+          return item;
+        }
 
-      cartList[indexItem].amount = cartList[indexItem].amount - 1;
-      cartList[indexItem].total =
-        cartList[indexItem].total - cartList[indexItem].price;
-      setCart(cartList);
+        const newAmount = item.amount - 1;
+
+        return {
+          ...item,
+          amount: newAmount,
+          total: item.total - item.price,
+        };
+      });
+
+      setCart(currentCart);
       return;
     }
 

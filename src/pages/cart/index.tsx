@@ -18,10 +18,10 @@ export function Cart() {
             {cart.map((product) => (
               <section
                 key={product.id}
-                className="flex w-full rounded-md outline-1 outline-offset-2 outline-cinza-borda px-2.5 py-2.5"
+                className="flex w-full rounded-md outline-2 outline-offset-2 outline-cinza-text-carrinho px-2.5 py-2.5"
               >
                 <img
-                  className="w-38 h-24 rounded-md mr-2.5"
+                  className="h-24 rounded-md mr-2.5 bg-cover"
                   src={product.cover}
                   alt={product.title}
                 />
@@ -59,7 +59,7 @@ export function Cart() {
             ))}
           </div>
 
-          <section className="h-60 w-full rounded-md outline-1 outline-offset-2 outline-cinza-borda">
+          <section className="h-60 w-full rounded-md outline-2 outline-offset-2 outline-cinza-text-carrinho">
             <div className="p-5">
               <h1 className="text-2xl font-semibold">Resumo do Pedido</h1>
               <div className="my-3 flex justify-between">
