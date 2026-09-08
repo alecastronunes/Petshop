@@ -4,7 +4,7 @@ import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router";
 
 export function Cart() {
-  const { cart, addItemCart, removeItemCart } = useContext(CartContext);
+  const { cart, addItemCart, removeItemCart, total } = useContext(CartContext);
 
   return (
     <div className="w-full max-w-7xl px-5 mx-auto font-inter">
@@ -64,14 +64,11 @@ export function Cart() {
               <h1 className="text-2xl font-semibold">Resumo do Pedido</h1>
               <div className="my-3 flex justify-between">
                 <span className="text-cinza-text-body text-base font-medium">
-                  Subtotal ()
+                  Subtotal ({})
                 </span>
-                {/* <span className="text-cinza-text-body text-base font-medium">
-                  {.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  })}
-                </span> */}
+                <span className="text-cinza-text-body text-base font-medium">
+                  {total}
+                </span>
               </div>
               <hr className="text-cinza-borda" />
               <div className="my-6 flex justify-between">
