@@ -2,9 +2,18 @@ import { FiTrash2 } from "react-icons/fi";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router";
+import toast from "react-hot-toast";
 
 export function Cart() {
-  const { cart, addItemCart, removeItemCart, total } = useContext(CartContext);
+  const {
+    cart,
+    addItemCart,
+    removeItemCart,
+    total,
+    removeProduct,
+    cartAmount,
+  } = useContext(CartContext);
+
 
   return (
     <div className="w-full max-w-7xl px-5 mx-auto font-inter">
@@ -51,7 +60,12 @@ export function Cart() {
                   <div className="flex text-red-600">
                     <span className="flex items-center mx-auto">
                       <FiTrash2 className="ml-2.5" />
-                      <p className="ml-1 cursor-pointer">Remover</p>
+                      <p
+                        className="ml-1 cursor-pointer"
+                        onClick={() => removeProduct(product)}
+                      >
+                        Remover
+                      </p>
                     </span>
                   </div>
                 </div>
@@ -64,7 +78,7 @@ export function Cart() {
               <h1 className="text-2xl font-semibold">Resumo do Pedido</h1>
               <div className="my-3 flex justify-between">
                 <span className="text-cinza-text-body text-base font-medium">
-                  Subtotal ({})
+                  Subtotal ({cartAmount})
                 </span>
                 <span className="text-cinza-text-body text-base font-medium">
                   {total}
@@ -74,11 +88,12 @@ export function Cart() {
               <div className="my-6 flex justify-between">
                 <span className="font-semibold text-base">Total</span>
                 <strong className="text-azul-texto-e-bg text-xl font-semibold">
-                  R$ 189,90
+                  {total}
                 </strong>
               </div>
               <div className="flex justify-center">
-                <button className="bg-laranja-carrinho-icone-bg w-full py-2 rounded-md text-amber-50 font-medium cursor-pointer shadow shadow-cinza-text-carrinho hover:scale-101 transition duration-200 ease-in-out">
+                <button className="bg-laranja-carrinho-icone-bg w-full py-2 rounded-md text-amber-50 font-medium cursor-pointer shadow shadow-cinza-text-carrinho hover:scale-101 transition duration-200 ease-in-out"
+                onClick={() => handlePay(products)}>
                   Finalizar Compra
                 </button>
               </div>

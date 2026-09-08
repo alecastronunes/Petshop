@@ -6,10 +6,11 @@ interface CartContextData {
   cartAmount: number;
   addItemCart: (newItem: ProductProps) => void;
   removeItemCart: (product: CartProps) => void;
+  removeProduct: (product: CartProps) => void;
   total: string;
 }
 
-interface CartProps {
+export interface CartProps {
   id: number;
   title: string;
   description: string;
@@ -93,6 +94,13 @@ function CartProvider({ children }: CartProviderProps) {
     totalResulCart(itemToRemove);
   }
 
+  function removeProduct(product: CartProps) {
+    const remove = cart.filter((item) => item.id !== product.id);
+    setCart(remove);
+    totalResulCart(remove);
+    return;
+  }
+
   function totalResulCart(items: CartProps[]) {
     const myCurrentCart = items;
 
@@ -111,6 +119,7 @@ function CartProvider({ children }: CartProviderProps) {
   return (
     <CartContext.Provider
       value={{
+        removeProduct,
         cart,
         cartAmount: cart.length,
         addItemCart,
