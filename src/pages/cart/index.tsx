@@ -14,6 +14,15 @@ export function Cart() {
     cartAmount,
   } = useContext(CartContext);
 
+  function handlePay() {
+    toast.success("Compra finalizada com sucesso!!!", {
+      style: {
+        borderRadius: 10,
+        backgroundColor: "#2baf2b",
+        color: "#FFF",
+      },
+    });
+  }
 
   return (
     <div className="w-full max-w-7xl px-5 mx-auto font-inter">
@@ -92,8 +101,10 @@ export function Cart() {
                 </strong>
               </div>
               <div className="flex justify-center">
-                <button className="bg-laranja-carrinho-icone-bg w-full py-2 rounded-md text-amber-50 font-medium cursor-pointer shadow shadow-cinza-text-carrinho hover:scale-101 transition duration-200 ease-in-out"
-                onClick={() => handlePay(products)}>
+                <button
+                  onClick={() => handlePay()}
+                  className="bg-laranja-carrinho-icone-bg w-full py-2 rounded-md text-amber-50 font-medium cursor-pointer shadow shadow-cinza-text-carrinho hover:scale-101 transition duration-200 ease-in-out"
+                >
                   Finalizar Compra
                 </button>
               </div>
