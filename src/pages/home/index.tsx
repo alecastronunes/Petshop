@@ -19,7 +19,6 @@ export function Home() {
   useEffect(() => {
     async function getProducts() {
       const response = await api.get("/db.json");
-      console.log(response.data);
       setProducts(response.data.products);
     }
     getProducts();
