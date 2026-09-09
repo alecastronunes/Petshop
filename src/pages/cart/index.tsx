@@ -36,47 +36,52 @@ export function Cart() {
             {cart.map((product) => (
               <section
                 key={product.id}
-                className="flex w-full rounded-md outline-2 outline-offset-2 outline-cinza-text-carrinho px-2.5 py-2.5"
+                className="flex w-full flex-col gap-3 rounded-md border border-cinza-text-carrinho px-2.5 py-2.5 sm:flex-row sm:items-center"
               >
-                <img
-                  className="h-24 rounded-md mr-2.5 bg-cover"
-                  src={product.cover}
-                  alt={product.title}
-                />
-                <div>
-                  <h4 className="font-semibold mb-1.5">{product.title}</h4>
-                  <strong className="text-azul-texto-e-bg">
-                    {product.price.toLocaleString("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
-                  </strong>
-                </div>
-                <div className="ml-auto mr-3 flex items-center gap-3">
-                  <button
-                    className="text-xl outline-1 h-7 w-7 outline-cinza-borda hover:bg-cinza-borda delay-75 cursor-pointer"
-                    onClick={() => removeItemCart(product)}
-                  >
-                    -
-                  </button>
-                  {product.amount}
-                  <button
-                    className="outline-1 h-7 w-7 outline-cinza-borda hover:bg-cinza-borda delay-75 cursor-pointer"
-                    onClick={() => addItemCart(product)}
-                  >
-                    +
-                  </button>
-                  <div className="flex text-red-600">
-                    <span className="flex items-center mx-auto">
-                      <FiTrash2 className="ml-2.5" />
-                      <p
-                        className="ml-1 cursor-pointer"
-                        onClick={() => removeProduct(product)}
-                      >
-                        Remover
-                      </p>
-                    </span>
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                  <img
+                    className="h-24 w-24 rounded-md object-cover object-center sm:h-28 sm:w-28"
+                    src={product.cover}
+                    alt={product.title}
+                  />
+                  <div className="min-w-0 flex-1">
+                    <h4 className="mb-1.5 font-semibold">{product.title}</h4>
+                    <strong className="text-azul-texto-e-bg">
+                      {product.price.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </strong>
                   </div>
+                </div>
+
+                <div className="flex w-full items-center justify-center gap-3 sm:ml-auto sm:w-auto sm:justify-end">
+                  <div className="flex items-center gap-2">
+                    <button
+                      className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-cinza-borda text-xl hover:bg-cinza-borda"
+                      onClick={() => removeItemCart(product)}
+                    >
+                      -
+                    </button>
+                    <span className="min-w-5 text-center">
+                      {product.amount}
+                    </span>
+                    <button
+                      className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-cinza-borda hover:bg-cinza-borda"
+                      onClick={() => addItemCart(product)}
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="flex items-center justify-center gap-1 whitespace-nowrap text-red-600 transition hover:text-red-700"
+                    onClick={() => removeProduct(product)}
+                  >
+                    <FiTrash2 className="text-base" />
+                    <span className="cursor-pointer">Remover</span>
+                  </button>
                 </div>
               </section>
             ))}
