@@ -18,9 +18,9 @@ export function Home() {
 
   useEffect(() => {
     async function getProducts() {
-      const response = await api.get("/products");
+      const response = await api.get("/db.json");
       console.log(response.data);
-      setProducts(response.data);
+      setProducts(response.data.products);
     }
     getProducts();
   }, []);
@@ -33,7 +33,7 @@ export function Home() {
         color: "#FFF",
       },
     });
-    console.log(product)
+    console.log(product);
     addItemCart(product);
   }
 
@@ -44,7 +44,10 @@ export function Home() {
         {products.length > 0 && (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
             {products.map((product) => (
-              <section key={product.id} className="w-full rounded-md shadow-b-cinza-borda shadow-md">
+              <section
+                key={product.id}
+                className="w-full rounded-md shadow-b-cinza-borda shadow-md"
+              >
                 <img
                   className="w-full rounded-t-md max-h-70 min-h-34 mb-2"
                   src={product.cover}
