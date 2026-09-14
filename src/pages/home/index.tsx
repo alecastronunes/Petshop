@@ -32,7 +32,6 @@ export function Home() {
         color: "#FFF",
       },
     });
-    console.log(product);
     addItemCart(product);
   }
 
